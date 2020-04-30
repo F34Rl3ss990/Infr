@@ -1,0 +1,82 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Person Name</label>
+        <input type="text" class="form-control" formControlName="person_name" #person_name/>
+      </div>
+      <div *ngIf="angForm.controls['person_name'].invalid && (angForm.controls['person_name'].dirty ||
+angForm.controls['person_name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['person_name'].errors.required">
+          Person Name is required.
+        </div>
+      </div>
+      <div class="form groupp">
+        <label class="col-md4">Phone Number</label>
+        <input type="text" class="form-control" formControlName="phone_number" #phone_number/>
+      </div>
+      <div *ngIf="angForm.controls['phone_number'].invalid && (angForm.controls['phone_number'].dirty ||
+    angForm.controls['phone_number'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['phone_number'].errors.required">
+          Phone number is required.
+        </div>
+      </div>
+      <div class="form group">
+        <label class="col-md4">ID Number</label>
+        <input type="text" class="form-control" formControlName="ID_Number" #ID_Number/>
+      </div>
+      <div *ngIf="angForm.controls['ID_Number'].invalid && (angForm.controls['ID_Number']
+        .dirty || angForm.controls['ID_Number'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['ID_Number'].errors.required">
+          ID number is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Zip code</label>
+        <input type="text" class="form-control" formControlName="zip_code" #zip_code/>
+      </div>
+      <div *ngIf="angForm.controls['zip_code'].invalid && (angForm.controls['zip_code'].dirty ||
+angForm.controls['zip_code'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['zip_code'].errors.required">
+          Zip code is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">City</label>
+        <input type="text" class="form-control" formControlName="city_" #city_/>
+      </div>
+      <div *ngIf="angForm.controls['city_'].invalid && (angForm.controls['city_'].dirty ||
+angForm.controls['city_'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['city_'].errors.required">
+          City is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Street</label>
+        <input type="text" class="form-control" formControlName="street" #street/>
+      </div>
+      <div *ngIf="angForm.controls['street'].invalid && (angForm.controls['street'].dirty ||
+angForm.controls['street'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['street'].errors.required">
+          Street is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">House number</label>
+        <input type="text" class="form-control" formControlName="house_number" #house_number/>
+      </div>
+      <div *ngIf="angForm.controls['house_number'].invalid && (angForm.controls['house_number'].dirty ||
+angForm.controls['house_number'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['house_number'].errors.required">
+          Street is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="addCustomer(person_name.value, phone_number.value, ID_Number.value,
+        zip_code.value, city_.value, street.value, house_number.value)"
+                type="submit" [disabled]="angForm.pristine || angForm.invalid"
+                class="btn btn-primary">Add Customer</button>
+      </div>
+    </form>
+  </div>
+</div>

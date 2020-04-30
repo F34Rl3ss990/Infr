@@ -1,0 +1,38 @@
+<div class="form-group mb-4">
+  <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search">
+</div>
+<table class="table table-hover" *ngIf="(customers | filter: searchText).length > 0; else noResults">
+  <thead>
+  <tr>
+    <td>Person Name</td>
+    <td>Phone Number</td>
+    <td>ID Number</td>
+    <td>Zip Code</td>
+    <td>City</td>
+    <td>Street</td>
+    <td>House Number</td>
+    <td colspan="2">Actions</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let customer of customers | filter: searchText; let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{ customer.person_name }}</td>
+    <td>{{ customer.phone_number }}</td>
+    <td>{{ customer.ID_Number }}</td>
+    <td>{{ customer.zip_code }}</td>
+    <td>{{ customer.city_ }}</td>
+    <td>{{ customer.street }}</td>
+    <td>{{ customer.house_number }}</td>
+    <td><a [routerLink]="['/edit', customer._id]" class="btn btn-primary">Edit</a></td>
+
+    <td><a [routerLink]="['/', customer._id]" class="btn btn-primary">Borrow</a></td>
+
+    <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>
+    <td><a (click) = "deleteCustomer(customer._id)" class="btn btn-danger">Delete</a></td>
+  </tr>
+  </tbody>
+</table>
+<ng-template #noResults>
+  <p>No results found for "{{searchText}}".</p>
+</ng-template>
