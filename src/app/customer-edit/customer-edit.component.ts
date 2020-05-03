@@ -15,6 +15,7 @@ export class CustomerEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router,
               private as: AppService, private fb: FormBuilder) {
+
     this.createForm();
   }
 
@@ -30,17 +31,18 @@ export class CustomerEditComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  public ngOnInit() {
     this.route.params.subscribe(params => {
       this.as.editCustomer(params.id).subscribe(res => {
         this.customer = res;
       });
     });
+
   }
 
   updateCustomer(person_name, phone_number, ID_Number, zip_code, city_, street, house_number){
     this.route.params.subscribe(params => {
-      this.as.updateCustomer(person_name, phone_number, ID_Number, zip_code, city_, street, house_number);
+      this.as.updateCustomer(person_name, phone_number, ID_Number, zip_code, city_, street, house_number, params.id);
       this.router.navigate(['customer-get']);
     });
   }

@@ -12,19 +12,24 @@ let Customer = new Schema({
   ID_Number: {
     type: String
   },
+  _id: {
+    type: Number
+  },
   address: {
     zip_code: {type: Number},
-    city: {type: String},
+    city_: {type: String},
     street: {type: String},
     house_number: {type: Number}
-  },
-  status: {
-    type: String
   }
 },{
   collection: 'customer'
 });
 
-autoIncrement.initialize(mongoose.connection);
-Customer.plugin(autoIncrement.plugin, 'number_');
+Customer.plugin(autoIncrement.plugin, {
+  model: 'Customer',
+  field: '_id',
+  startAt: 1,
+  incrementBy: 1
+});
+
 module.exports = mongoose.model('Customer', Customer);

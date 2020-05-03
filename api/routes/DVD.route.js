@@ -1,6 +1,7 @@
 const express = require('express');
-//const app = express();
+const app = express();
 const DVDRoutes = express.Router();
+
 
 let DVD = require('../models/DVD');
 
@@ -15,9 +16,10 @@ DVDRoutes.route('/addDVD').post(function (req, res) {
       res.status(400).send("unable to save to database");
     });
 });
-/*
+
+
 // Defined get data(index or listing) route
-DVDRoutes.route('/').get(function (req, res) {
+DVDRoutes.route('/getDVD').get(function (req, res) {
   DVD.find(function (err, dvd){
     if(err){
       console.log(err);
@@ -27,14 +29,11 @@ DVDRoutes.route('/').get(function (req, res) {
     }
   });
 });
-*/
-// Defined edit route
-DVDRoutes.route('/edit/:id').get(function (req, res) {
-  let id = req.params.id;
-  DVD.findById(id, function (err, dvd){
-    res.json(dvd);
-  });
-});
+
+
+
+
+
 /*
 //  Defined update route
 DVDRoutes.route('/update/:id').post(function (req, res) {
@@ -57,7 +56,7 @@ DVDRoutes.route('/update/:id').post(function (req, res) {
 });
 */
 // Defined delete | remove | destroy route
-DVDRoutes.route('/delete/:id').get(function (req, res) {
+DVDRoutes.route('/getDVD/delete/:id').get(function (req, res) {
   DVD.findByIdAndRemove({_id: req.params.id}, function(err, dvd){
     if(err) res.json(err);
     else res.json('Successfully removed');

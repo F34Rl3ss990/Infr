@@ -11,16 +11,28 @@
   </thead>
   <tbody>
   <ng-container *ngFor="let DVD of DVDs | filter: searchText; let i = index">
-  <tr *ngIf="DVD.state.equals('szbad')">
-    <th scope="row">{{i + 1}}</th>
-    <td>{{ DVD.title }}</td>
-    <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>
-    <td><a (click) = "deleteDVD(DVD._id)" class="btn btn-danger">Delete</a></td>
-  </tr>
+    <tr *ngIf="DVD.state==='szabad'">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{ DVD.title }}</td>
+      <td><a [routerLink]="" (click) = "addDVDtoConnection(DVD._id, DVD.title)" class="btn btn-danger">Add</a></td>
+    </tr>
   </ng-container>
   </tbody>
 </table>
 <ng-template #noResults>
   <p>No results found for "{{searchText}}".</p>
 </ng-template>
-
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <td>Counter</td>
+    <td>Borrowed DVD</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let connection of ModdedConnection | filter: searchText; let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{ connection.title }}</td>
+  </tr>
+  </tbody>
+</table>

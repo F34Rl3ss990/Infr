@@ -14,7 +14,7 @@ export class DVDGetComponent implements OnInit {
 
   constructor(private as: AppService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.as.getDVD().subscribe((data: DVD[]) => {
       this.DVDs = data;
     });

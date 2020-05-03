@@ -16,11 +16,11 @@ export class DVDAddComponent implements OnInit {
   createForm(){
     this.angForm = this.fb.group({
       title: ['', Validators.required],
-      date_of_get: ['', Validators.required]
+      dateOfGet: ['', Validators.required]
     });
   }
-  addDVD(title, date_of_get){
-    this.as.addDVD(title, date_of_get);
+  addDVD(title, dateOfGet){
+    this.as.addDVD(title, dateOfGet);
   }
   ngOnInit(): void {
   }

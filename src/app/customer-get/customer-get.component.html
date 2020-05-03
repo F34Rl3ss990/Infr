@@ -4,6 +4,8 @@
 <table class="table table-hover" *ngIf="(customers | filter: searchText).length > 0; else noResults">
   <thead>
   <tr>
+    <td>Counter</td>
+    <td>Id</td>
     <td>Person Name</td>
     <td>Phone Number</td>
     <td>ID Number</td>
@@ -17,19 +19,17 @@
   <tbody>
   <tr *ngFor="let customer of customers | filter: searchText; let i = index">
     <th scope="row">{{i + 1}}</th>
+    <td>{{ customer._id }}</td>
     <td>{{ customer.person_name }}</td>
     <td>{{ customer.phone_number }}</td>
     <td>{{ customer.ID_Number }}</td>
-    <td>{{ customer.zip_code }}</td>
-    <td>{{ customer.city_ }}</td>
-    <td>{{ customer.street }}</td>
-    <td>{{ customer.house_number }}</td>
-    <td><a [routerLink]="['/edit', customer._id]" class="btn btn-primary">Edit</a></td>
-
-    <td><a [routerLink]="['/', customer._id]" class="btn btn-primary">Borrow</a></td>
-
-    <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>
-    <td><a (click) = "deleteCustomer(customer._id)" class="btn btn-danger">Delete</a></td>
+    <td>{{ customer.address.zip_code }}</td>
+    <td>{{ customer.address.city_ }}</td>
+    <td>{{ customer.address.street }}</td>
+    <td>{{ customer.address.house_number }}</td>
+    <td><a [routerLink]="['/customer-edit', customer._id]" class="btn btn-primary">Edit</a></td>
+    <td><a [routerLink]="['/borrowing', customer._id]" class="btn btn-primary">Borrow</a></td>
+    <td><a (click) = "deleteCustomer(customer._id)" class="btn btn-danger" [routerLink]="[]">Delete</a></td>
   </tr>
   </tbody>
 </table>

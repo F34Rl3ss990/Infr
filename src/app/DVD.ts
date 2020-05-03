@@ -1,10 +1,9 @@
 export class DVD {
 
   title: String;
-  date_of_get: String;
-  number_: Number;
+  dateOfGet: String;
+  _id: Number;
   state: String;
-
 }
 
 

@@ -4,6 +4,7 @@
 <table class="table table-hover" *ngIf="(DVDs | filter: searchText).length >0; else noResults">
   <thead>
   <tr>
+    <td>Counter</td>
     <td>Title</td>
     <td>Date of get</td>
     <td>Number</td>
@@ -15,11 +16,10 @@
   <tr *ngFor="let DVD of DVDs | filter: searchText; let i = index">
     <th scope="row">{{i + 1}}</th>
     <td>{{ DVD.title }}</td>
-    <td>{{ DVD.date_of_get }}</td>
-    <td>{{ DVD.number_ }}</td>
+    <td>{{ DVD.dateOfGet }}</td>
+    <td>{{ DVD._id }}</td>
     <td>{{ DVD.state }}</td>
-    <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>
-    <td><a (click) = "deleteDVD(DVD._id)" class="btn btn-danger">Delete</a></td>
+    <td><a (click) = "deleteDVD(DVD._id)" [routerLink]=""  class="btn btn-danger">Delete</a></td>
   </tr>
   </tbody>
 </table>

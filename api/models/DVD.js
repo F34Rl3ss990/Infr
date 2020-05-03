@@ -1,24 +1,30 @@
 const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-auto-increment');
-const Schema = mongoose.Schema;
 
+const Schema = mongoose.Schema;
 let DVD = new Schema({
   title: {
     type: String
   },
-  date_of_get: {
-    type: Date
-  },
-  number_: {
+  dateOfGet: {
     type: Number
   },
-  State: {
-    type: String
+  _id:{
+    type: Number
+  },
+  state: {
+    type: String,
+    default: 'szabad'
   }
 },{
   collection: 'dvd'
 });
 
-autoIncrement.initialize(mongoose.connection);
-DVD.plugin(autoIncrement.plugin, 'number_');
+DVD.plugin(autoIncrement.plugin, {
+  model: 'DVD',
+  field: '_id',
+  startAt: 1,
+  incrementBy: 1
+});
+
 module.exports = mongoose.model('DVD', DVD);

@@ -7,10 +7,8 @@
            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ügyfél
           <span class="caret"></span></a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a routerLink="" class="dropdown-item" routerLinkActive="active" style="cursor: pointer;">Ügyfél felvitele</a>
-          <a routerLink="" class="dropdown-item" routerLinkActive="active"  style="cursor: pointer;">Ügyfelek</a>
-          <a routerLink="" class="dropdown-item" routerLinkActive="active"  style="cursor: pointer;">Ügyfél szerkesztése</a>
-          <a routerLink="" class="dropdown-item" routerLinkActive="active"  style="cursor: pointer;">Ügyfél Törlése</a>
+          <a routerLink="customer-add" class="dropdown-item" routerLinkActive="active" style="cursor: pointer;">Ügyfél felvitele</a>
+          <a routerLink="customer-get" class="dropdown-item" routerLinkActive="active"  style="cursor: pointer;">Ügyfelek</a>
         </div>
       </li>
       <li class="nav-item dropdown"  style="padding-top:7px">
@@ -18,10 +16,8 @@
            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DVD
           <span class="caret"></span></a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a routerLink="" class="dropdown-item" routerLinkActive="active"  style="cursor: pointer;">DVD felvitele</a>
-          <a routerLink="" class="dropdown-item" routerLinkActive="active"  style="cursor: pointer;">DVDk</a>
-          <a routerLink="" class="dropdown-item" routerLinkActive="active"  style="cursor: pointer;">DVD szerkesztése</a>
-          <a routerLink="" class="dropdown-item" routerLinkActive="active"  style="cursor: pointer;">DVD Törlése</a>
+          <a routerLink="dvd-add" class="dropdown-item" routerLinkActive="active"  style="cursor: pointer;">DVD felvitele</a>
+          <a routerLink="dvd-get" class="dropdown-item" routerLinkActive="active"  style="cursor: pointer;">DVDk</a>
       </div>
       </li>
       <li class="nav-item" >
@@ -31,7 +27,7 @@
       </li>
 
       <li class="nav-item">
-        <a routerLink="" class="nav-link" routerLinkActive="active">
+        <a routerLink="bring-back" class="nav-link" routerLinkActive="active">
           DVD visszahozatal
         </a>
       </li>
@@ -43,7 +39,5 @@
     </ul>
   </div>
 </nav>
-
-<div class="container">
   <router-outlet></router-outlet>
-</div>
+

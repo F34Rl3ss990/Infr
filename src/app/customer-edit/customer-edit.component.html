@@ -28,27 +28,19 @@
           ID Number is required.
         </div>
       </div>
-      <div class="form-group">
-        <label class="col-md-4">Zip Code </label>
-        <input type="text" class="form-control" formControlName="zip_code" #zip_code [(ngModel)] = "customer.zip_code" />
-      </div>
-      <div *ngIf="angForm.controls['zip_code'].invalid && (angForm.controls['zip_code'].dirty || angForm.controls['zip_code'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['zip_code'].errors.required">
-          Zip Code is required.
-        </div>
-      </div>
+
       <div class="form-group">
         <label class="col-md-4">City </label>
-        <input type="text" class="form-control" formControlName="city" #city [(ngModel)] = "customer.city_" />
+        <input type="text" class="form-control" formControlName="city_" #city_ [(ngModel)] = "customer.address.city_" />
       </div>
-      <div *ngIf="angForm.controls['city'].invalid && (angForm.controls['city'].dirty || angForm.controls['city'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['city'].errors.required">
+      <div *ngIf="angForm.controls['city_'].invalid && (angForm.controls['city_'].dirty || angForm.controls['city_'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['city_'].errors.required">
           City is required.
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-4">Street </label>
-        <input type="text" class="form-control" formControlName="street" #street [(ngModel)] = "customer.street" />
+        <input type="text" class="form-control" formControlName="street" #street [(ngModel)] = "customer.address.street" />
       </div>
       <div *ngIf="angForm.controls['street'].invalid && (angForm.controls['street'].dirty || angForm.controls['street'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['street'].errors.required">
@@ -56,8 +48,17 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="col-md-4">Zip Code </label>
+        <input type="text" class="form-control" formControlName="zip_code" #zip_code [(ngModel)] = "customer.address.zip_code" />
+      </div>
+      <div *ngIf="angForm.controls['zip_code'].invalid && (angForm.controls['zip_code'].dirty || angForm.controls['zip_code'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['zip_code'].errors.required">
+          Zip Code is required.
+        </div>
+      </div>
+      <div class="form-group">
         <label class="col-md-4">House number </label>
-        <input type="text" class="form-control" formControlName="house_number" #house_number [(ngModel)] = "customer.house_number" />
+        <input type="text" class="form-control" formControlName="house_number" #house_number [(ngModel)] = "customer.address.house_number" />
       </div>
       <div *ngIf="angForm.controls['house_number'].invalid && (angForm.controls['house_number'].dirty || angForm.controls['house_number'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['house_number'].errors.required">
@@ -66,7 +67,7 @@
       </div>
       <div class="form-group">
         <button (click)="updateCustomer(person_name.value, phone_number.value, ID_Number.value,
-        zip_code.value, city_.value, street.value, house_number.value)"
+        zip_code.value, city_.value, street.value, house_number.value)" type="submit"
                 [disabled]="angForm.invalid"
                 class="btn btn-primary">Update Customer</button>
       </div>

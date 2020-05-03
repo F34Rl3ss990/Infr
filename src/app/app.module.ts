@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
@@ -21,6 +22,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DvdSearchComponent } from './dvd-search/dvd-search.component';
 import { CustomerSearchComponent } from './customer-search/customer-search.component';
 import { FilterPipe } from './filter.pipe';
+import {HttpClientModule} from '@angular/common/http';
+import {AppService} from './app.service';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -44,15 +48,17 @@ import { FilterPipe } from './filter.pipe';
   ],
   exports: [AppComponent],
 
-  imports: [
-    SlimLoadingBarModule,
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    NgbModule,
-    ReactiveFormsModule
-  ],
-  providers: [SlimLoadingBarService],
+    imports: [
+        SlimLoadingBarModule,
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        NgbModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatPaginatorModule
+    ],
+  providers: [SlimLoadingBarService, AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

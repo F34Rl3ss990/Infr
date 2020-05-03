@@ -1,10 +1,15 @@
 export class Connection {
-  ID_Number: String;
+  customer: Customer;
+  dvd: DVD;
+  _id: Object;
+}
+export class DVD{
   title: String;
+  state: String;
+  dateOfBorrow: Number;
+}
+export class Customer{
   person_name: String;
   phone_number: Number;
-  date_of_borrow: Date;
-  delay_: Number;
-
+  ID_Number: String;
 }
-

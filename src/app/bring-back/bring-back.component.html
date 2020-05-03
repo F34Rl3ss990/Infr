@@ -1,1 +1,29 @@
-<p>bring-back works!</p>
+<div class="form-group mb-4">
+  <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search for dvd">
+</div>
+<table class="table table-hover" *ngIf="(ModdedConnectionForDVD  | filter: searchText).length >0; else noResults">
+  <thead>
+  <tr>
+    <td>Counter</td>
+    <td>Title</td>
+    <td>Date of get</td>
+    <td colspan="2">Actions</td>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container>
+    <ng-container *ngFor="let connection of Connections ">
+      <tr *ngFor="let dvd of connection.dvd | filter: searchText; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{ connection.customer.person_name }}</td>
+        <td>{{ dvd.title }}</td>
+        <td><a [routerLink]="" (click) = "deleteFromConnection(dvd._id, connection._id)" class="btn btn-danger">Del</a></td>
+      </tr>
+    </ng-container>
+  </ng-container>
+  </tbody>
+</table>
+<ng-template #noResults>
+  <p>No results found for "{{searchText}}".</p>
+</ng-template>
+

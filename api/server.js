@@ -4,20 +4,27 @@ let express = require('express'),
   cors = require ('cors'),
   mongoose = require ('mongoose'),
   config = require ('./database/db');
+ var autoIncrement = require('mongoose-auto-increment');
+
+
 
 var gracefulShutdown;
 var dbURI = 'mongodb://localhost:27017/mydb';
 if (process.env.NODE_ENV === 'production') {
   dbURI = process.env.MONGOLAB_URI;
 }
-const port = process.env.PORT || 4000;
-var version=process.env.version || "1.0"
+
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.db, {useNewUrlParser: true}).then(
+mongoose.connect(config.db, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: true}).then(
   () => {console.log('Database is connected')},
   err => {console.log('Can not connect to the database' + err)}
 );
+autoIncrement.initialize(mongoose.connection);
+
 // CONNECTION EVENTS
 mongoose.connection.on('connected', function() {
   console.log('Mongoose connected to ' + dbURI);
@@ -53,23 +60,33 @@ process.on('SIGTERM', function() {
   });
 });
 
+
 const connectionRoute = require('./routes/connection.route'),
   customerRoute = require('./routes/customer.route'),
   DVDRoute = require('./routes/DVD.route');
+
+
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'dist/Nyilvantarto')));
 app.use('/', express.static(path.join(__dirname, 'dist/Nyilvantarto')));
 app.use('/app', connectionRoute);
 app.use('/app', customerRoute);
 app.use('/app', DVDRoute);
-const port = process.env.PORT ||4000;
-const server = app.listen(function(){
+const port = process.env.PORT || 4000;
+var version=process.env.version || "1.0"
+
+const server = app.listen(port, () => {
   console.log('Listening on port ' + port);
   console.log('Version '+version);
 })
