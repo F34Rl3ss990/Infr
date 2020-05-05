@@ -4,10 +4,12 @@ const autoIncrement = require('mongoose-auto-increment');
 const Schema = mongoose.Schema;
 let DVD = new Schema({
   title: {
-    type: String
+    type: String,
+    unique:true
   },
   dateOfGet: {
-    type: Number
+    type: Date,
+    max: Date.now()
   },
   _id:{
     type: Number

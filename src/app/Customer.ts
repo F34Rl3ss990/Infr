@@ -1,6 +1,7 @@
 export  class Customer {
 
-  person_name: String;
+  first_name: String;
+  last_name: String;
   phone_number: Number;
   ID_Number: String;
   address: Address;

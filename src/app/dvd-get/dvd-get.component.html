@@ -16,10 +16,12 @@
   <tr *ngFor="let DVD of DVDs | filter: searchText; let i = index">
     <th scope="row">{{i + 1}}</th>
     <td>{{ DVD.title }}</td>
-    <td>{{ DVD.dateOfGet }}</td>
+    <td>{{ DVD.dateOfGet| date:'yyyy-MM-dd'  }}</td>
     <td>{{ DVD._id }}</td>
     <td>{{ DVD.state }}</td>
-    <td><a (click) = "deleteDVD(DVD._id)" [routerLink]=""  class="btn btn-danger">Delete</a></td>
+    <ng-container *ngIf="DVD.state === 'szabad'">
+    <td><a (click) = "deleteDVD(DVD._id)"   class="btn btn-danger" style="color:white">Delete</a></td>
+    </ng-container>
   </tr>
   </tbody>
 </table>

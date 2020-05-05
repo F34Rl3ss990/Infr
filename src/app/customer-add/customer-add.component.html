@@ -1,26 +1,35 @@
 <div class="card">
   <div class="card-body">
     <form [formGroup]="angForm" novalidate>
+
       <div class="form-group">
-        <label class="col-md-4">Person Name</label>
-        <input type="text" class="form-control" formControlName="person_name" #person_name/>
+        <label class="col-md-4">First Name</label>
+        <input type="text" class="form-control" formControlName="first_name" #first_name/>
       </div>
-      <div *ngIf="angForm.controls['person_name'].invalid && (angForm.controls['person_name'].dirty ||
-angForm.controls['person_name'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['person_name'].errors.required">
-          Person Name is required.
+      <div *ngIf="angForm.controls['first_name'].invalid && (angForm.controls['first_name'].dirty ||
+angForm.controls['first_name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['first_name'].errors.required">
+          First Name is required.
+        </div>
+        <div *ngIf="angForm.controls['first_name'].errors.pattern">
+          Only letters!
         </div>
       </div>
-      <div class="form groupp">
-        <label class="col-md4">Phone Number</label>
-        <input type="text" class="form-control" formControlName="phone_number" #phone_number/>
+
+      <div class="form-group">
+        <label class="col-md-4">Last Name</label>
+        <input type="text" class="form-control" formControlName="last_name" #last_name/>
       </div>
-      <div *ngIf="angForm.controls['phone_number'].invalid && (angForm.controls['phone_number'].dirty ||
-    angForm.controls['phone_number'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['phone_number'].errors.required">
-          Phone number is required.
+      <div *ngIf="angForm.controls['last_name'].invalid && (angForm.controls['last_name'].dirty ||
+angForm.controls['last_name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['last_name'].errors.required">
+          Last Name is required.
+        </div>
+        <div *ngIf="angForm.controls['last_name'].errors.pattern">
+          Only letters!
         </div>
       </div>
+
       <div class="form group">
         <label class="col-md4">ID Number</label>
         <input type="text" class="form-control" formControlName="ID_Number" #ID_Number/>
@@ -30,7 +39,25 @@ angForm.controls['person_name'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['ID_Number'].errors.required">
           ID number is required.
         </div>
+        <div *ngIf="angForm.controls['ID_Number'].errors.pattern">
+          8 character needs to be provided!
+        </div>
       </div>
+
+      <div class="form groupp">
+        <label class="col-md4">Phone Number</label>
+        <input type="text" class="form-control" formControlName="phone_number" #phone_number/>
+      </div>
+      <div *ngIf="angForm.controls['phone_number'].invalid && (angForm.controls['phone_number'].dirty ||
+    angForm.controls['phone_number'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['phone_number'].errors.required">
+          Phone number is required.
+        </div>
+        <div *ngIf="angForm.controls['phone_number'].errors.pattern">
+          11 number needs to be provided!
+        </div>
+      </div>
+
       <div class="form-group">
         <label class="col-md-4">Zip code</label>
         <input type="text" class="form-control" formControlName="zip_code" #zip_code/>
@@ -38,8 +65,12 @@ angForm.controls['person_name'].touched)" class="alert alert-danger">
       <div *ngIf="angForm.controls['zip_code'].invalid && (angForm.controls['zip_code'].dirty ||
 angForm.controls['zip_code'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['zip_code'].errors.required">
-          Zip code is required.
+          Zip code is required!
         </div>
+        <div *ngIf="angForm.controls['zip_code'].errors.pattern">
+          It must contains 4 number!
+        </div>
+
       </div>
       <div class="form-group">
         <label class="col-md-4">City</label>
@@ -50,7 +81,11 @@ angForm.controls['city_'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['city_'].errors.required">
           City is required.
         </div>
+        <div *ngIf="angForm.controls['city_'].errors.pattern">
+          Only letters!
+        </div>
       </div>
+
       <div class="form-group">
         <label class="col-md-4">Street</label>
         <input type="text" class="form-control" formControlName="street" #street/>
@@ -60,7 +95,11 @@ angForm.controls['street'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['street'].errors.required">
           Street is required.
         </div>
+        <div *ngIf="angForm.controls['street'].errors.pattern">
+          Only letters!
+        </div>
       </div>
+
       <div class="form-group">
         <label class="col-md-4">House number</label>
         <input type="text" class="form-control"  formControlName="house_number" #house_number/>
@@ -70,10 +109,16 @@ angForm.controls['house_number'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['house_number'].errors.required">
           Street is required.
         </div>
+        <div *ngIf="angForm.controls['house_number'].errors.pattern">
+          Only numbers!
+        </div>
+      </div>
+      <div *ngIf="buzeusz">
+        <p style="color: red">This ID Number already exists. Upload cancelled, change the ID and try again.</p>
       </div>
       <div class="form-group">
-        <button (click)="addCustomer(person_name.value, phone_number.value, ID_Number.value,
-        zip_code.value, city_.value, street.value, house_number.value)"
+        <button (click)="addCustomer(first_name.value, last_name.value, phone_number.value, ID_Number.value,
+        zip_code.value, city_.value, street.value, house_number.value);"
                 type="submit" [disabled]="angForm.pristine || angForm.invalid"
                 class="btn btn-primary">Add Customer</button>
       </div>

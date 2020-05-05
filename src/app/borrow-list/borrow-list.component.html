@@ -1,30 +1,34 @@
 <div class="form-group mb-4">
-  <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search">
+  <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search for dvd">
 </div>
-<table class="table table-hover" *ngIf="(connections | filter: searchText).length > 0; else noResults">
+<table class="table table-hover" *ngIf="(ModdedConnectionForDVD  | filter: searchText).length >0; else noResults">
   <thead>
   <tr>
-    <td>ID Number</td>
-    <td>Person Name</td>
-    <td>Phone Number</td>
+    <td>Counter</td>
     <td>Title</td>
-    <td>Date of Borrow</td>
-    <td>Delay</td>
-    <td colspan="2">Actions</td>
+    <td>Date of get</td>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let connection of connections | filter: searchText; let i = index">
-    <th scope="row">{{i + 1}}</th>
-    <td>{{ connection.ID_Number }}</td>
-    <td>{{ connection.title }}</td>
-    <td>{{ connection.person_name }}</td>
-    <td>{{ connection.phone_number }}</td>
-    <td>{{ connection.date_of_borrow }}</td>
-    <td>{{ connection.delay_ }}</td>
-  </tr>
+  <ng-container>
+    <ng-container *ngFor="let connection of Connections ">
+      <tr *ngFor="let dvd of connection.dvd | filter: searchText;  let i = index">
+        <ng-container *ngIf="dvd">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{ connection.customer.first_name }}</td>
+        <td>{{ connection.customer.last_name }}</td>
+        <td>{{ connection.customer.ID_Number }}</td>
+        <td>{{ dvd.title }}</td>
+        <td>{{ dvd.dateOfBorrow | date:'yyyy-MM-dd' }}</td>
+        <td>{{ dvd.title }}</td>
+        <td>{{ convertDate(dvd.dateOfBorrow)}}</td>
+        </ng-container>
+      </tr>
+    </ng-container>
+  </ng-container>
   </tbody>
 </table>
 <ng-template #noResults>
   <p>No results found for "{{searchText}}".</p>
 </ng-template>
+

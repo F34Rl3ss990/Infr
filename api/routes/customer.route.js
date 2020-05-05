@@ -64,8 +64,8 @@ customerRoutes.route('/Customerupdate/:id').post(function (req, res, next) {
     if (!customer)
       return next(new Error('Could not load Document'));
     else {
-
-        customer.person_name = req.body.person_name;
+        customer.first_name = req.body.first_name;
+        customer.last_name = req.body.last_name;
         customer.phone_number = req.body.phone_number;
         customer.ID_Number = req.body.ID_Number;
         customer.address.zip_code = req.body.address.zip_code;
@@ -74,7 +74,6 @@ customerRoutes.route('/Customerupdate/:id').post(function (req, res, next) {
         customer.address.house_number = req.body.address.house_number;
         customer.save().then(customer => {
         res.json('Update complete');
-
       })
         .catch(err => {
           res.status(400).send("unable to update the database");
@@ -82,8 +81,5 @@ customerRoutes.route('/Customerupdate/:id').post(function (req, res, next) {
     }
   });
 });
-
-
-
 
 module.exports = customerRoutes;

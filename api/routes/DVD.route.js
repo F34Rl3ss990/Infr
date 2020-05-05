@@ -29,9 +29,57 @@ DVDRoutes.route('/getDVD').get(function (req, res) {
     }
   });
 });
+DVDRoutes.route('/getWastedLOL/asd/asd/asd/asd/:id').post(function (req, res, next) {
+  console.log("akármi")
+  console.log(req.params.id)
+  console.log(req.body.state)
+  DVD.findOneAndUpdate({_id: req.params.id},
+    {$set:{state: req.body.state}},
+    (err, dvd)=> {
+      if (err) {
+        return next(new Error('Could not load Document'));
+      }
+      else {
+        res.json('Update complete')
+        console.log(dvd)
+      }
+    });
+});
 
-
-
+DVDRoutes.route('/getWastedLOL/asd/asd/asd/:id').post(function (req, res, next) {
+  console.log("akármi")
+  console.log(req.params.id)
+  console.log(req.body.state)
+  DVD.findOneAndUpdate({_id: req.params.id},
+    {$set:{state: req.body.state}},
+    (err, dvd)=> {
+      if (err) {
+        return next(new Error('Could not load Document'));
+      }
+      else {
+        res.json('Update complete')
+        console.log(dvd)
+      }
+    });
+});
+DVDRoutes.route('/getBorrowedLOL/asd/asd/asd/asd/:id').post(function (req, res, next) {
+  console.log("akármi")
+  console.log("ekszdi")
+  console.log(req.body)
+  console.log(req.params.id)
+  console.log(req.body.state)
+  DVD.findOneAndUpdate({_id: req.params.id},
+    {$set:{state: req.body.state}},
+    (err, dvd)=> {
+      if (err) {
+        return next(new Error('Could not load Document'));
+      }
+      else {
+        res.json('Update complete')
+        console.log(dvd)
+      }
+    });
+});
 
 
 /*

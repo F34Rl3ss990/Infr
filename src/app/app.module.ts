@@ -12,19 +12,23 @@ import { CustomerGetComponent } from './customer-get/customer-get.component';
 import { DVDGetComponent } from './dvd-get/dvd-get.component';
 import { DVDAddComponent } from './dvd-add/dvd-add.component';
 import { BringBackComponent } from './bring-back/bring-back.component';
-import { DvdBorrowComponent } from './dvd-borrow/dvd-borrow.component';
 import { BorrowListComponent } from './borrow-list/borrow-list.component';
-import { HeaderComponent } from './header/header.component';
 import {SlimLoadingBarModule, SlimLoadingBarService} from 'ng2-slim-loading-bar';
 import { OpenerComponent } from './opener/opener.component';
 import { BorrowingComponent } from './borrowing/borrowing.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DvdSearchComponent } from './dvd-search/dvd-search.component';
-import { CustomerSearchComponent } from './customer-search/customer-search.component';
 import { FilterPipe } from './filter.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import {AppService} from './app.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { SuccessfulDvdAddComponent } from './successful-dvd-add/successful-dvd-add.component';
+import { SuccessfulDvdUpdateComponent } from './successful-dvd-update/successful-dvd-update.component';
+import { SuccessfulCustomerUpdateComponent } from './successful-customer-update/successful-customer-update.component';
+import { SuccessfulCustomerAddComponent } from './successful-customer-add/successful-customer-add.component';
+import { SuccessfulBorrowAddComponent } from './successful-borrow-add/successful-borrow-add.component';
+import { SuccessfulBorrowRemoveComponent } from './successful-borrow-remove/successful-borrow-remove.component';
+import { SuccessfulCustomerDeleteComponent } from './successful-customer-delete/successful-customer-delete.component';
+import { OnCreateDirective } from './on-create.directive';
 
 
 
@@ -37,14 +41,18 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     DVDGetComponent,
     DVDAddComponent,
     BringBackComponent,
-    DvdBorrowComponent,
     BorrowListComponent,
-    HeaderComponent,
     OpenerComponent,
     BorrowingComponent,
-    DvdSearchComponent,
-    CustomerSearchComponent,
-    FilterPipe
+    FilterPipe,
+    SuccessfulDvdAddComponent,
+    SuccessfulDvdUpdateComponent,
+    SuccessfulCustomerUpdateComponent,
+    SuccessfulCustomerAddComponent,
+    SuccessfulBorrowAddComponent,
+    SuccessfulBorrowRemoveComponent,
+    SuccessfulCustomerDeleteComponent,
+    OnCreateDirective
   ],
   exports: [AppComponent],
 

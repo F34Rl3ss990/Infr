@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DVD} from '../DVD';
 import {AppService} from '../app.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dvd-get',
@@ -12,17 +13,18 @@ export class DVDGetComponent implements OnInit {
   DVDs: DVD[];
   searchText: string;
 
-  constructor(private as: AppService) { }
+
+  constructor(private as: AppService, private router: Router) { }
 
   public ngOnInit(): void {
     this.as.getDVD().subscribe((data: DVD[]) => {
       this.DVDs = data;
     });
-  }
+}
   deleteDVD(id) {
-    this.as.deleteDVD(id).subscribe(res => {
+    console.log("akármi")
+    this.as.updateDVDwithWaste(id)
+      this.router.navigate(['successful-dvd-update']);
       console.log('Deleted');
-    });
-  }
-
+    }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DVD} from '../DVD';
 import {AppService} from '../app.service';
 import {Connection} from '../Connection';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-bring-back',
@@ -15,14 +16,13 @@ export class BringBackComponent implements OnInit {
   ModdedConnectionForDVD: Connection[];
 
 
-  constructor(private as: AppService) { }
+  constructor(private as: AppService, private router: Router) { }
 
   ngOnInit(): void {
     this.as.getConnection().subscribe((data: Connection[]) => {
       this.Connections = data;
       console.log(data)
       this.fasz()
-
     });
 
   }
@@ -40,6 +40,9 @@ export class BringBackComponent implements OnInit {
     console.log("1. lépés")
     console.log(dvdID)
     this.as.deleteFromConnection(dvdID, connectionID);
+    this.as.updateDVDwithFree(dvdID);
+    this.router.navigate(['successful-borrow-remove']);
+
 
   }
 

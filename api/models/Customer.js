@@ -3,13 +3,17 @@ const Schema = mongoose.Schema;
 const autoIncrement = require('mongoose-auto-increment');
 
 let Customer = new Schema({
-  person_name: {
+  first_name: {
+    type: String
+  },
+  last_name:{
     type: String
   },
   phone_number: {
     type: Number
   },
   ID_Number: {
+    unique: true,
     type: String
   },
   _id: {
