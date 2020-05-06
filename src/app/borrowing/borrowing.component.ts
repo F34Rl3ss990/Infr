@@ -1,9 +1,9 @@
 import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
 import {AppService} from '../app.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DVD} from '../DVD';
-import {Connection} from '../Connection';
-import {Customer} from '../Customer';
+import {DVD} from '../../Models/DVD';
+import {Connection} from '../../Models/Connection';
+import {Customer} from '../../Models/Customer';
 import {iterator} from 'rxjs/internal-compatibility';
 
 @Component({
@@ -31,40 +31,31 @@ export class BorrowingComponent implements OnInit {
       this.Customers = data;
       this.as.getConnection().subscribe((data2: Connection[]) => {
         this.Connections = data2;
-        this.fasz();
+        this.getConnIdAndConnDVD();
       });
     });
     });
 }
-public fasz(){
+public getConnIdAndConnDVD(){
   var CustomerArray: any [] = [];
   var ConnectionArray: any[] = [];
   ConnectionArray.push(this.Connections)
   CustomerArray.push(this.Customers)
-  console.log(CustomerArray)
-  console.log(ConnectionArray)
-  for(const customerx of CustomerArray){
+  for(const customer of CustomerArray){
     for (const connection of ConnectionArray) {
       for(let i =0; i<ConnectionArray[0].length; i++) {
-        console.log(customerx.ID_Number)
-        if (customerx.ID_Number === connection[i]["customer"]["ID_Number"]) {
+        if (customer.ID_Number === connection[i]["customer"]["ID_Number"]) {
           this.ConnectionID = connection[i]["_id"]
-          console.log(connection[i]["dvd"])
           this.ModdedConnection = connection[i]["dvd"];
-          console.log(i)
         } else {
-          console.log(i)
         }
       }
     }
   }
 }
   addDVDtoConnection(DVDid, title){
-      console.log(this.ConnectionID)
-      this.as.addDVDtoConnection(DVDid, title, this.ConnectionID);
-    console.log(DVDid)
+    this.as.addDVDtoConnection(DVDid, title, this.ConnectionID);
     this.as.updateDVDwithBorrowed(DVDid);
     this.router.navigate(['successful-borrow-add']);
   }
-
 }

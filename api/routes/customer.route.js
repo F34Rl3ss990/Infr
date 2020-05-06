@@ -4,10 +4,7 @@ const customerRoutes = express.Router();
 
 let Customer = require('../models/Customer');
 
-
-// Defined store route
-customerRoutes.route('/Customeradd').post(function (req, res) {
-  console.log(req.body);
+customerRoutes.route('/customerAdd').post(function (req, res) {
   let customer = new Customer(req.body);
   customer.save().then(customer => {
       res.status(200).json({'customer': 'customer in added successfully'});
@@ -32,7 +29,6 @@ customerRoutes.route('/getCustomer').get(function (req, res) {
 //Get Customer by ID
 customerRoutes.route('/getCustomer/:id').get(function (req, res) {
   let id = req.params.id;
-  console.log(id)
   Customer.findById(id,function (err, customer){
     if(err) res.json(err);
     else
@@ -40,10 +36,9 @@ customerRoutes.route('/getCustomer/:id').get(function (req, res) {
   });
 });
 
-// Defined edit route
+
 customerRoutes.route('/editCustomer/:id').get(function (req, res) {
   let id = req.params.id;
-  console.log(id)
   Customer.findById(id,function (err, customer){
     if(err) res.json(err);
     else
@@ -58,8 +53,7 @@ customerRoutes.route('/getCustomer/delete/:id').get(function (req, res) {
   });
 });
 
-//  Defined update route
-customerRoutes.route('/Customerupdate/:id').post(function (req, res, next) {
+customerRoutes.route('/customerUpdate/:id').post(function (req, res, next) {
   Customer.findById(req.params.id, function(err, customer) {
     if (!customer)
       return next(new Error('Could not load Document'));

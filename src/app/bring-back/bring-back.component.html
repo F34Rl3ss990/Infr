@@ -1,13 +1,19 @@
+<div class="container">
 <div class="form-group mb-4">
-  <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search for dvd">
+  <input class="form-control" type="text"
+         [(ngModel)]="searchText" placeholder="Search for dvd">
 </div>
-<table class="table table-hover" *ngIf="(ModdedConnectionForDVD  | filter: searchText).length >0; else noResults">
+<table class="table table-hover" *ngIf="(ModdedConnectionForDVD  |
+ filter: searchText).length >0; else noResults">
   <thead>
   <tr>
-    <td>Counter</td>
-    <td>Title</td>
-    <td>Date of get</td>
-    <td colspan="2">Actions</td>
+    <td>#</td>
+    <td>First Name</td>
+    <td>Last Name</td>
+    <td>ID Number</td>
+    <td>Borrow Date</td>
+    <td>DVD Title</td>
+    <td colspan="2">Action</td>
   </tr>
   </thead>
   <tbody>
@@ -17,8 +23,11 @@
         <th scope="row">{{i + 1}}</th>
         <td>{{ connection.customer.first_name }}</td>
         <td>{{ connection.customer.last_name }}</td>
+        <td>{{ connection.customer.ID_Number }}</td>
+        <td>{{ dvd.dateOfBorrow | date:'yyyy-MM-dd'}}</td>
         <td>{{ dvd.title }}</td>
-        <td><a [routerLink]="" (click) = "deleteFromConnection(dvd._id, connection._id)" class="btn btn-danger">Del</a></td>
+        <td><a [routerLink]="" (click) = "deleteFromConnection(dvd._id, connection._id, dvd.title)"
+               class="btn btn-danger">Delete</a></td>
       </tr>
     </ng-container>
   </ng-container>
@@ -27,4 +36,4 @@
 <ng-template #noResults>
   <p>No results found for "{{searchText}}".</p>
 </ng-template>
-
+</div>

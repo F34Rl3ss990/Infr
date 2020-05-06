@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DVD} from '../DVD';
+import {DVD} from '../../Models/DVD';
 import {AppService} from '../app.service';
 import {Router} from '@angular/router';
 
@@ -22,7 +22,6 @@ export class DVDGetComponent implements OnInit {
     });
 }
   deleteDVD(id) {
-    console.log("akármi")
     this.as.updateDVDwithWaste(id)
       this.router.navigate(['successful-dvd-update']);
       console.log('Deleted');

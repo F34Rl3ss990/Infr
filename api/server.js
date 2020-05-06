@@ -6,14 +6,11 @@ let express = require('express'),
   config = require ('./database/db');
  var autoIncrement = require('mongoose-auto-increment');
 
-
-
 var gracefulShutdown;
 var dbURI = 'mongodb://localhost:27017/mydb';
 if (process.env.NODE_ENV === 'production') {
   dbURI = process.env.MONGOLAB_URI;
 }
-
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.db, {
@@ -60,12 +57,9 @@ process.on('SIGTERM', function() {
   });
 });
 
-
 const connectionRoute = require('./routes/connection.route'),
   customerRoute = require('./routes/customer.route'),
   DVDRoute = require('./routes/DVD.route');
-
-
 
 const app = express();
 app.use(bodyParser.json());
@@ -78,8 +72,8 @@ app.use(function(req, res, next) {
   next();
 });
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'dist/Nyilvantarto')));
-app.use('/', express.static(path.join(__dirname, 'dist/Nyilvantarto')));
+app.use(express.static(path.join(__dirname, 'dist/Registry')));
+app.use('/', express.static(path.join(__dirname, 'dist/Registry')));
 app.use('/app', connectionRoute);
 app.use('/app', customerRoute);
 app.use('/app', DVDRoute);
@@ -93,7 +87,6 @@ const server = app.listen(port, () => {
 app.use((req, res, next) => {
   next(createError(404));
 });
-
 
 app.use(function (err, req, res, next) {
   console.error(err.message); // Log error message in our server's console

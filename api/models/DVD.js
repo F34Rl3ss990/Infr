@@ -16,7 +16,7 @@ let DVD = new Schema({
   },
   state: {
     type: String,
-    default: 'szabad'
+    default: 'free'
   }
 },{
   collection: 'dvd'

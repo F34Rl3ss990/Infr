@@ -5,7 +5,6 @@ const DVDRoutes = express.Router();
 
 let DVD = require('../models/DVD');
 
-// Defined store route
 DVDRoutes.route('/addDVD').post(function (req, res) {
   let dvd = new DVD(req.body);
   dvd.save()
@@ -17,8 +16,6 @@ DVDRoutes.route('/addDVD').post(function (req, res) {
     });
 });
 
-
-// Defined get data(index or listing) route
 DVDRoutes.route('/getDVD').get(function (req, res) {
   DVD.find(function (err, dvd){
     if(err){
@@ -29,10 +26,8 @@ DVDRoutes.route('/getDVD').get(function (req, res) {
     }
   });
 });
-DVDRoutes.route('/getWastedLOL/asd/asd/asd/asd/:id').post(function (req, res, next) {
-  console.log("akármi")
-  console.log(req.params.id)
-  console.log(req.body.state)
+
+DVDRoutes.route('/getWasted/:id').post(function (req, res, next) {
   DVD.findOneAndUpdate({_id: req.params.id},
     {$set:{state: req.body.state}},
     (err, dvd)=> {
@@ -41,15 +36,11 @@ DVDRoutes.route('/getWastedLOL/asd/asd/asd/asd/:id').post(function (req, res, ne
       }
       else {
         res.json('Update complete')
-        console.log(dvd)
       }
     });
 });
 
-DVDRoutes.route('/getWastedLOL/asd/asd/asd/:id').post(function (req, res, next) {
-  console.log("akármi")
-  console.log(req.params.id)
-  console.log(req.body.state)
+DVDRoutes.route('/getBorrowed/:id').post(function (req, res, next) {
   DVD.findOneAndUpdate({_id: req.params.id},
     {$set:{state: req.body.state}},
     (err, dvd)=> {
@@ -58,16 +49,11 @@ DVDRoutes.route('/getWastedLOL/asd/asd/asd/:id').post(function (req, res, next) 
       }
       else {
         res.json('Update complete')
-        console.log(dvd)
       }
     });
 });
-DVDRoutes.route('/getBorrowedLOL/asd/asd/asd/asd/:id').post(function (req, res, next) {
-  console.log("akármi")
-  console.log("ekszdi")
-  console.log(req.body)
-  console.log(req.params.id)
-  console.log(req.body.state)
+
+DVDRoutes.route('/getFree/:id').post(function (req, res, next) {
   DVD.findOneAndUpdate({_id: req.params.id},
     {$set:{state: req.body.state}},
     (err, dvd)=> {
@@ -76,34 +62,10 @@ DVDRoutes.route('/getBorrowedLOL/asd/asd/asd/asd/:id').post(function (req, res, 
       }
       else {
         res.json('Update complete')
-        console.log(dvd)
       }
     });
 });
 
-
-/*
-//  Defined update route
-DVDRoutes.route('/update/:id').post(function (req, res) {
-  DVD.findById(req.params.id, function(err, next, dvd) {
-    if (!dvd)
-      return next(new Error('Could not load Document'));
-    else {
-      dvd.//person_name = req.body.person_name;
-      dvd.//business_name = req.body.business_name;
-      dvd.//business_gst_number = req.body.business_gst_number;
-
-        dvd.save().then(dvd => {
-        res.json('Update complete');
-      })
-        .catch(err => {
-          res.status(400).send("unable to update the database");
-        });
-    }
-  });
-});
-*/
-// Defined delete | remove | destroy route
 DVDRoutes.route('/getDVD/delete/:id').get(function (req, res) {
   DVD.findByIdAndRemove({_id: req.params.id}, function(err, dvd){
     if(err) res.json(err);

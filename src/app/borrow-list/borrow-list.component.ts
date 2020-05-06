@@ -1,6 +1,6 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppService} from '../app.service';
-import {Connection} from '../Connection';
+import {Connection} from '../../Models/Connection';
 
 @Component({
   selector: 'app-borrow-list',
@@ -8,42 +8,40 @@ import {Connection} from '../Connection';
   styleUrls: ['./borrow-list.component.css']
 })
 
-
 export class BorrowListComponent implements OnInit {
   Connections: Connection[];
   dvd: any[] = [];
   searchText: string;
   ModdedConnectionForDVD: Connection[];
   date: Date;
-  dateForCheck: Number;
-
   constructor(private as: AppService) { }
 
   ngOnInit(): void {
     this.as.getConnection().subscribe((data: Connection[]) => {
       this.Connections = data;
-      console.log(data)
-      this.fasz()
+      this.getConnectionForSearch()
       let dateString = Date.now()
       this.date = (new Date(dateString));
     });
-
   }
-  public fasz(){
+  public getConnectionForSearch(){
     var ConnectionArray: any [] = [];
     ConnectionArray.push(this.Connections)
+    var i = 0;
     for(const connection of ConnectionArray){
-      var i = 0;
-      this.dateForCheck = connection[i]["dvd"].dateOfBorrow
       this.ModdedConnectionForDVD = connection[i]["dvd"];
-      console.log(connection[i]["dvd"])
       i++;
     }
   }
 
   convertDate(dateOfBorrow){
-    let asd = Math.abs((new Date(this.date).getTime())- (new Date(dateOfBorrow).getTime()))
-    let bsd =Math.ceil(asd/(1000*3600*24))
-    return bsd;
+    let dateSubtract = Math.abs((new Date(this.date).getTime())
+      - (new Date(dateOfBorrow).getTime()))
+    let delay =Math.ceil(dateSubtract/(1000*3600*24))
+    if(delay> 6) {
+      return delay-7;
+    } else{
+      return "There is no delay";
+    }
   }
 }

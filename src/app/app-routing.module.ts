@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import {BorrowListComponent} from './borrow-list/borrow-list.component';
 import {BringBackComponent} from './bring-back/bring-back.component';
 import {CustomerAddComponent} from './customer-add/customer-add.component';
@@ -16,8 +17,6 @@ import {SuccessfulCustomerUpdateComponent} from './successful-customer-update/su
 import {SuccessfulDvdAddComponent} from './successful-dvd-add/successful-dvd-add.component';
 import {SuccessfulDvdUpdateComponent} from './successful-dvd-update/successful-dvd-update.component';
 import {SuccessfulCustomerDeleteComponent} from './successful-customer-delete/successful-customer-delete.component';
-
-
 
 const routes: Routes = [
 

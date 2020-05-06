@@ -1,15 +1,16 @@
+<div class="container">
 <div class="form-group mb-4">
   <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search">
 </div>
 <table class="table table-hover" *ngIf="(DVDs | filter: searchText).length >0; else noResults">
   <thead>
   <tr>
-    <td>Counter</td>
+    <td>#</td>
     <td>Title</td>
     <td>Date of get</td>
     <td>Number</td>
     <td>State</td>
-    <td colspan="2">Actions</td>
+    <td colspan="2">Action</td>
   </tr>
   </thead>
   <tbody>
@@ -19,8 +20,8 @@
     <td>{{ DVD.dateOfGet| date:'yyyy-MM-dd'  }}</td>
     <td>{{ DVD._id }}</td>
     <td>{{ DVD.state }}</td>
-    <ng-container *ngIf="DVD.state === 'szabad'">
-    <td><a (click) = "deleteDVD(DVD._id)"   class="btn btn-danger" style="color:white">Delete</a></td>
+    <ng-container *ngIf="DVD.state === 'free'">
+    <td><a (click) = "deleteDVD(DVD._id)"   class="btn btn-danger" style="color:white">Waste it</a></td>
     </ng-container>
   </tr>
   </tbody>
@@ -28,4 +29,4 @@
 <ng-template #noResults>
   <p>No results found for "{{searchText}}".</p>
 </ng-template>
-
+</div>

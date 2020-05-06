@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DVD} from '../DVD';
+import {DVD} from '../../Models/DVD';
 import {AppService} from '../app.service';
-import {Connection} from '../Connection';
+import {Connection} from '../../Models/Connection';
 import {Router} from '@angular/router';
 
 @Component({
@@ -11,39 +11,47 @@ import {Router} from '@angular/router';
 })
 export class BringBackComponent implements OnInit {
   Connections: Connection[];
-  dvd: any[] = [];
   searchText: string;
   ModdedConnectionForDVD: Connection[];
-
+  DVDs: DVD[];
+  dvdID: String;
 
   constructor(private as: AppService, private router: Router) { }
 
   ngOnInit(): void {
     this.as.getConnection().subscribe((data: Connection[]) => {
       this.Connections = data;
-      console.log(data)
-      this.fasz()
+      this.getDVDFromConnection()
     });
-
+    this.as.getDVD().subscribe((data: DVD[]) => {
+      this.DVDs = data;
+    });
   }
-  public fasz(){
+  public getDVDFromConnection(){
     var ConnectionArray: any [] = [];
     ConnectionArray.push(this.Connections)
     for(const connection of ConnectionArray){
           var i = 0;
           this.ModdedConnectionForDVD = connection[i]["dvd"];
-          console.log(connection[i]["dvd"])
           i++;
         }
       }
-  deleteFromConnection(dvdID, connectionID){
-    console.log("1. lépés")
-    console.log(dvdID)
+  deleteFromConnection(dvdID, connectionID, dvdTitle){
+    this.getDVD(dvdTitle);
     this.as.deleteFromConnection(dvdID, connectionID);
-    this.as.updateDVDwithFree(dvdID);
+    this.as.updateDVDwithFree(this.dvdID);
     this.router.navigate(['successful-borrow-remove']);
-
-
   }
-
+  getDVD(dvdTitle){
+    var DVDArray: any[] = [];
+    DVDArray.push(this.DVDs)
+    for(let i=0; i<DVDArray[0].length;i++) {
+      for (const dvd of DVDArray) {
+        if(dvd[i].title === dvdTitle){
+          this.dvdID = dvd[i]._id;
+          break;
+          }
+        }
+      }
+    }
 }
